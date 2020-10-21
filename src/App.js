@@ -1,26 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+import TestHook from './component/TestHook';
+import HOCs from './component/HOCs';
+import ButtonComponent from  './component/ButtonComponent';
+import RenderProps from './component/RenderProps';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const TestHOCs = HOCs(ButtonComponent,'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/data/plotting-multiple-series-on-time-axis-data.json')
+class App extends React.Component{
+  render(){
+    return (
+      <div className="App">
+          <p>Hook</p>
+          <TestHook></TestHook>
+          <p>HOCs</p>
+          <TestHOCs></TestHOCs>
+          <p>Render Props</p>
+          <RenderProps>{(isLoading,clicked)=> <ButtonComponent isLoading={isLoading} clicked={clicked}></ButtonComponent>}</RenderProps>
+      </div>
+    );
+  }
+  
 }
 
 export default App;
